@@ -418,7 +418,7 @@ function FloatingCartButton({ onClick, count, pulse }: { onClick: () => void; co
 /* ---------------- cart drawer ---------------- */
 
 function CartDrawer({ onClose, onCheckout }: { onClose: () => void; onCheckout: () => void }) {
-  const { lines, inc, dec, remove, subtotal, delivery, setDelivery, total, notes, setNotes } = useCart();
+  const { lines, inc, dec, remove, subtotal, total, notes, setNotes } = useCart();
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col justify-end bg-black/60 backdrop-blur-sm" onClick={onClose}>
@@ -472,25 +472,13 @@ function CartDrawer({ onClose, onCheckout }: { onClose: () => void; onCheckout: 
                   className="w-full rounded-lg bg-muted border border-border p-2 text-sm resize-none"
                 />
               </div>
-              <div>
-                <label className="text-xs font-semibold text-muted-foreground block mb-1">Costo de delivery (Gs.)</label>
-                <input
-                  type="number"
-                  inputMode="numeric"
-                  value={delivery}
-                  onChange={(e) => setDelivery(Math.max(0, Number(e.target.value) || 0))}
-                  className="w-full rounded-lg bg-muted border border-border p-2 text-sm"
-                />
-              </div>
             </>
           )}
         </div>
 
         {lines.length > 0 && (
           <div className="border-t border-border p-4 space-y-2 bg-card/50">
-            <Row label="Subtotal" value={formatGs(subtotal)} />
-            <Row label="Delivery" value={formatGs(delivery)} />
-            <Row label="Total" value={formatGs(total)} big />
+            <Row label="Total" value={formatGs(subtotal)} big />
             <button
               onClick={onCheckout}
               className="btn-press w-full bg-primary text-primary-foreground font-bold py-4 rounded-2xl shadow-lg shadow-primary/30 mt-2"
@@ -538,6 +526,7 @@ function Checkout({ onClose, onSent }: { onClose: () => void; onSent: () => void
   const [geo, setGeo] = useState<string | null>(null);
   const [geoErr, setGeoErr] = useState<string | null>(null);
   const [confirmClosed, setConfirmClosed] = useState<null | "ask">(null);
+  const [deliveryType, setDeliveryType] = useState<"pickup" | "delivery">("delivery");
   const open = isOpenNow();
 
   const shareLocation = () => {
@@ -563,11 +552,20 @@ function Checkout({ onClose, onSent }: { onClose: () => void; onSent: () => void
         return `${label} x ${l.qty} - ${formatGs(sub)}`;
       })
       .join("\n");
+    const deliveryLabel = deliveryType === "pickup" ? "Retirar en el local" : "Delivery";
+    const addressSection = deliveryType === "delivery" ? `Dirección:
+${address || "-"}
+
+Ubicación:
+${geo || "-"}` : "";
     return (
 `Nuevo pedido - Punto 10 Pizza & Burguer
 
 Nombre:
 ${name || "-"}
+
+Tipo de entrega:
+${deliveryLabel}
 
 Pedido:
 ${linesTxt}
@@ -576,20 +574,13 @@ ${linesTxt}
 Subtotal:
 ${formatGs(cart.subtotal)}
 
-Delivery:
-${formatGs(cart.delivery)}
-
 Total:
-${formatGs(cart.total)}
+${formatGs(cart.subtotal)}
 
 Método de pago:
 ${PAY_LABELS[pay]}
 
-Dirección:
-${address || "-"}
-
-Ubicación:
-${geo || "-"}
+${addressSection}
 
 Nota:
 ${cart.notes || "-"}`
@@ -636,17 +627,44 @@ ${cart.notes || "-"}`
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Tu nombre" className="input" />
         </Field>
 
-        <Field label="Dirección de entrega">
-          <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Calle, número, referencia" className="input" />
-        </Field>
-
         <div>
-          <button onClick={shareLocation} className="btn-press w-full bg-muted border border-border rounded-xl py-3 font-semibold flex items-center justify-center gap-2">
-            📍 {geo ? "Ubicación compartida ✓" : "Compartir mi ubicación"}
-          </button>
-          {geo && <p className="text-xs text-success mt-1 break-all">{geo}</p>}
-          {geoErr && <p className="text-xs text-danger mt-1">{geoErr}</p>}
+          <p className="text-xs font-semibold text-muted-foreground mb-2">Tipo de entrega</p>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => setDeliveryType("pickup")}
+              className={`btn-press rounded-xl py-3 px-3 border font-semibold ${
+                deliveryType === "pickup" ? "bg-primary text-primary-foreground border-primary" : "bg-muted border-border"
+              }`}
+            >
+              🏪 Retirar en el local
+            </button>
+            <button
+              onClick={() => setDeliveryType("delivery")}
+              className={`btn-press rounded-xl py-3 px-3 border font-semibold ${
+                deliveryType === "delivery" ? "bg-primary text-primary-foreground border-primary" : "bg-muted border-border"
+              }`}
+            >
+              🚗 Delivery
+            </button>
+          </div>
         </div>
+
+        {deliveryType === "delivery" && (
+          <>
+            <Field label="Dirección de entrega">
+              <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Calle, número, referencia" className="input" />
+            </Field>
+
+            <div>
+              <button onClick={shareLocation} className="btn-press w-full bg-muted border border-border rounded-xl py-3 font-semibold flex items-center justify-center gap-2">
+                📍 {geo ? "Ubicación compartida ✓" : "Compartir mi ubicación"}
+              </button>
+              {geo && <p className="text-xs text-success mt-1 break-all">{geo}</p>}
+              {geoErr && <p className="text-xs text-danger mt-1">{geoErr}</p>}
+              <p className="text-xs text-muted-foreground mt-2">El costo de envío se confirma por WhatsApp según tu zona.</p>
+            </div>
+          </>
+        )}
 
         <div>
           <p className="text-xs font-semibold text-muted-foreground mb-2">Método de pago</p>
@@ -685,9 +703,7 @@ ${cart.notes || "-"}`
             })}
           </ul>
           <div className="mt-3 pt-3 border-t border-border space-y-1">
-            <Row label="Subtotal" value={formatGs(cart.subtotal)} />
-            <Row label="Delivery" value={formatGs(cart.delivery)} />
-            <Row label="Total" value={formatGs(cart.total)} big />
+            <Row label="Total" value={formatGs(cart.subtotal)} big />
           </div>
         </div>
 

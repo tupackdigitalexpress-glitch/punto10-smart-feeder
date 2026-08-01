@@ -1,8 +1,27 @@
-import pizza from "@/assets/pizza-muzzarella.jpg";
 import lomito from "@/assets/lomito.jpg";
+import sandwichLomito from "@/assets/sandwich-lomito.jpg";
 import pollo from "@/assets/pollo.jpg";
 import papas from "@/assets/papas.jpg";
 import bebida from "@/assets/bebida.jpg";
+import aguaMineral from "@/assets/agua mineral.jpg";
+import jugo from "@/assets/jugo.jpg";
+
+// Burger images
+import burgerGuarani from "@/assets/guarani-gold-doble.png";
+import burgerNanduti from "@/assets/nanduti-black-triple.png";
+import burgerAcaray from "@/assets/acaray-prime-completa.png";
+
+// Pizza images
+import pizzaPolloCatupiry from "@/assets/calabreza-catupiry.jpg";
+import pizzaCalabresa from "@/assets/calabreza.png";
+import pizzaPepperoni from "@/assets/pepperoni.png";
+import pizzaNapolitana from "@/assets/napolitana-pepperoni.png";
+import pizzaBacon from "@/assets/catupiry-pepperoni.png";
+import pizzaPicana from "@/assets/picaña-catupiry.png";
+import pizzaPortuguesa from "@/assets/catupiry-portuguesa.png";
+import pizzaLomipizza from "@/assets/picaña-portuguesa.png";
+import pizzaCuatroQuesoCalabresa from "@/assets/cuatro queso-calabreza.png";
+import pizzaCuatroQuesoPepperoni from "@/assets/cuatro queso-pepperoni.png";
 
 export type Category = {
   id: string;
@@ -39,38 +58,38 @@ const pizzaVariants: Variant[] = [
   { id: "con-borde", name: "Con borde", priceDelta: 10000 },
 ];
 
-const pizza2 = (id: string, name: string, description: string): Product => ({
+const pizza2 = (id: string, name: string, description: string, image: string): Product => ({
   id,
   name,
   description,
   price: 50000,
-  image: pizza,
+  image,
   category: "pizzas",
   variants: pizzaVariants,
 });
 
 export const PRODUCTS: Product[] = [
   // PIZZAS
-  pizza2("pz-pollo", "Pollo Catupiry", "Salsa, mozzarella, orégano, pollo y choclo."),
-  pizza2("pz-cala", "Calabresa", "Salsa, mozzarella, orégano, calabresa y aceitunas."),
-  pizza2("pz-pepp", "Pepperoni", "Salsa, mozzarella, orégano y pepperoni."),
-  pizza2("pz-napo", "Napolitana", "Salsa, mozzarella, orégano, jamón y tomate."),
-  pizza2("pz-bacon", "Bacon", "Salsa, mozzarella, orégano, bacon y locote."),
-  pizza2("pz-pica", "Picaña", "Salsa, mozzarella, orégano, picaña y cebolla."),
-  pizza2("pz-port", "Portuguesa", "Salsa, mozzarella, orégano, huevo, cebolla, jamón, locote y tomate."),
-  pizza2("pz-lomi", "Lomipizza", "Salsa, mozzarella, orégano, lomito, cebolla y locote."),
+  pizza2("pz-pollo", "Catupiry+Calabreza", "Salsa, mozzarella, orégano, catupiry, calabresa y aceitunas.", pizzaPolloCatupiry),
+  pizza2("pz-cala", "Calabresa", "Salsa, mozzarella, orégano, calabresa y aceitunas.", pizzaCalabresa),
+  pizza2("pz-pepp", "Pepperoni", "Salsa, mozzarella, orégano y pepperoni.", pizzaPepperoni),
+  pizza2("pz-napo", "Napolitana+Pepperoni", "Salsa, mozzarella, orégano, jamón, tomate y pepperoni.", pizzaNapolitana),
+  pizza2("pz-bacon", "Catupiry+Pepperoni", "Salsa, mozzarella, orégano, catupiry y pepperoni.", pizzaBacon),
+  pizza2("pz-pica", "Picaña+Catupiry", "Salsa, mozzarella, orégano, picaña, cebolla y catupiry.", pizzaPicana),
+  pizza2("pz-port", "Portuguesa+Catupiry", "Salsa, mozzarella, orégano, huevo, cebolla, jamón, locote, tomate y catupiry.", pizzaPortuguesa),
+  pizza2("pz-lomi", "Picaña+Portuguesa", "Salsa, mozzarella, orégano, picaña, cebolla, huevo, jamón y locote.", pizzaLomipizza),
+  pizza2("pz-4q-cala", "Cuatro Queso Calabresa", "Salsa, mozzarella, orégano, calabresa y cuatro quesos.", pizzaCuatroQuesoCalabresa),
+  pizza2("pz-4q-pepp", "Cuatro Queso Pepperoni", "Salsa, mozzarella, orégano, pepperoni y cuatro quesos.", pizzaCuatroQuesoPepperoni),
 
   // HAMBURGUESAS
-  { id: "hb-normal", name: "Hamburguesa Normal", description: "Pan artesanal, medallón jugoso y vegetales frescos.", price: 16000, image: lomito, category: "hamburguesas" },
-  { id: "hb-doble", name: "Hamburguesa Doble", description: "Doble medallón, doble sabor.", price: 25000, image: lomito, category: "hamburguesas" },
-  { id: "hb-triple", name: "Burger Triple", description: "Triple carne para los más hambrientos.", price: 33000, image: lomito, category: "hamburguesas" },
-  { id: "hb-ched", name: "Burger con Cheddar", description: "Cheddar derretido y medallón a la plancha.", price: 20000, image: lomito, category: "hamburguesas" },
-  { id: "hb-ched2", name: "Burger con Cheddar Doble", description: "Doble medallón bañado en cheddar.", price: 30000, image: lomito, category: "hamburguesas" },
+  { id: "hb-guarani", name: "Guaraní Gold Doble", description: "Hamburguesa artesanal con doble carne.", price: 23000, image: burgerGuarani, category: "hamburguesas" },
+  { id: "hb-nanduti", name: "Ñandutí Black Triple", description: "Hamburguesa triple carne premium.", price: 30000, image: burgerNanduti, category: "hamburguesas" },
+  { id: "hb-acaray", name: "Acaray Prime Completa", description: "Hamburguesa completa con todos los ingredientes.", price: 15000, image: burgerAcaray, category: "hamburguesas" },
 
   // SÁNDWICHES DE LOMITO
-  { id: "lm-simple", name: "Lomito Simple", description: "Jugoso lomito con vegetales frescos y salsa de la casa.", price: 28000, image: lomito, category: "lomito" },
-  { id: "lm-doble", name: "Lomito Doble", description: "Doble porción de lomito para los más hambrientos.", price: 38000, image: lomito, category: "lomito" },
-  { id: "lm-triple", name: "Lomito Triple", description: "Triple carne, todos los agregados.", price: 48000, image: lomito, category: "lomito" },
+  { id: "lm-simple", name: "Lomito Simple", description: "Jugoso lomito con vegetales frescos y salsa de la casa.", price: 28000, image: sandwichLomito, category: "lomito" },
+  { id: "lm-doble", name: "Lomito Doble", description: "Doble porción de lomito para los más hambrientos.", price: 38000, image: sandwichLomito, category: "lomito" },
+  { id: "lm-triple", name: "Lomito Triple", description: "Triple carne, todos los agregados.", price: 48000, image: sandwichLomito, category: "lomito" },
 
   // SÁNDWICHES DE POLLO
   { id: "po-simple", name: "Pollo Simple", description: "Filete de pollo a la plancha, vegetales y salsa especial en pan recién horneado.", price: 25000, image: pollo, category: "pollo" },
@@ -81,8 +100,8 @@ export const PRODUCTS: Product[] = [
   { id: "ar-carne2", name: "Árabe de Carne Doble", description: "Doble porción de carne en pan árabe.", price: 38000, image: lomito, category: "arabes" },
   { id: "ar-mixto", name: "Árabe Mixto", description: "Combinación de carne y pollo en pan árabe.", price: 30000, image: lomito, category: "arabes" },
   { id: "ar-mixto2", name: "Árabe Mixto Doble", description: "Doble mixto de carne y pollo.", price: 40000, image: lomito, category: "arabes" },
-  { id: "ar-pollo", name: "Árabe de Pollo", description: "Filete de pollo en pan árabe con vegetales.", price: 25000, image: pollo, category: "arabes" },
-  { id: "ar-pollo2", name: "Árabe de Pollo Doble", description: "Doble porción de pollo en pan árabe.", price: 35000, image: pollo, category: "arabes" },
+  { id: "ar-pollo", name: "Árabe de Pollo", description: "Filete de pollo en pan árabe con vegetales.", price: 25000, image: lomito, category: "arabes" },
+  { id: "ar-pollo2", name: "Árabe de Pollo Doble", description: "Doble porción de pollo en pan árabe.", price: 35000, image: lomito, category: "arabes" },
 
   // PORCIONES
   { id: "pr-papas", name: "Papas Fritas (Regular)", description: "Doradas y crocantes, porción individual.", price: 15000, image: papas, category: "porciones" },
@@ -90,8 +109,8 @@ export const PRODUCTS: Product[] = [
 
   // BEBIDAS
   { id: "bb-coca", name: "Coca-Cola 600 ml", description: "Bien fría, para acompañar tu pedido.", price: 12000, image: bebida, category: "bebidas" },
-  { id: "bb-agua", name: "Agua mineral", description: "Botella 500 ml.", price: 7000, image: bebida, category: "bebidas" },
-  { id: "bb-jugo", name: "Jugo del día", description: "Consultá el sabor de hoy.", price: 10000, image: bebida, category: "bebidas" },
+  { id: "bb-agua", name: "Agua mineral", description: "Botella 500 ml.", price: 7000, image: aguaMineral, category: "bebidas" },
+  { id: "bb-jugo", name: "Jugo del día", description: "Consultá el sabor de hoy.", price: 10000, image: jugo, category: "bebidas" },
 ];
 
 export const UPSELL_MAP: Record<string, string[]> = {
