@@ -22,6 +22,7 @@ import pizzaPortuguesa from "@/assets/catupiry-portuguesa.png";
 import pizzaLomipizza from "@/assets/picaña-portuguesa.png";
 import pizzaCuatroQuesoCalabresa from "@/assets/cuatro queso-calabreza.png";
 import pizzaCuatroQuesoPepperoni from "@/assets/cuatro queso-pepperoni.png";
+import pizzaLomipizzaSpecial from "@/assets/lomipizza.jpg";
 
 export type Category = {
   id: string;
@@ -80,6 +81,7 @@ export const PRODUCTS: Product[] = [
   pizza2("pz-lomi", "Picaña+Portuguesa", "Salsa, mozzarella, orégano, picaña, cebolla, huevo, jamón y locote.", pizzaLomipizza),
   pizza2("pz-4q-cala", "Cuatro Queso Calabresa", "Salsa, mozzarella, orégano, calabresa y cuatro quesos.", pizzaCuatroQuesoCalabresa),
   pizza2("pz-4q-pepp", "Cuatro Queso Pepperoni", "Salsa, mozzarella, orégano, pepperoni y cuatro quesos.", pizzaCuatroQuesoPepperoni),
+  { id: "pz-lomipizza", name: "Lomipizza", description: "Salsa, mozzarella, lomito, lechuga, tomate, huevo y cebolla.", price: 110000, image: pizzaLomipizzaSpecial, category: "pizzas" },
 
   // HAMBURGUESAS
   { id: "hb-guarani", name: "Guaraní Gold Doble", description: "Hamburguesa artesanal con doble carne.", price: 23000, image: burgerGuarani, category: "hamburguesas" },
