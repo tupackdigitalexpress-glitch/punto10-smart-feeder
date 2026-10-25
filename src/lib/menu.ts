@@ -4,7 +4,6 @@ import pollo from "@/assets/pollo.jpg";
 import papas from "@/assets/papas.jpg";
 import bebida from "@/assets/bebida.jpg";
 import aguaMineral from "@/assets/agua mineral.jpg";
-import jugo from "@/assets/jugo.jpg";
 
 // Burger images
 import burgerGuarani from "@/assets/guarani-gold-doble.png";
@@ -41,6 +40,7 @@ export type Product = {
   image: string;
   category: string;
   variants?: Variant[];
+  badge?: string;
 };
 
 export const CATEGORIES: Category[] = [
@@ -71,7 +71,7 @@ const pizza2 = (id: string, name: string, description: string, image: string): P
 
 export const PRODUCTS: Product[] = [
   // PIZZAS
-  pizza2("pz-pollo", "Catupiry+Calabreza", "Salsa, mozzarella, orégano, catupiry, calabresa y aceitunas.", pizzaPolloCatupiry),
+  pizza2("pz-pollo", "Catupiry+Calabresa", "Salsa, mozzarella, orégano, catupiry, calabresa y aceitunas.", pizzaPolloCatupiry),
   pizza2("pz-cala", "Calabresa", "Salsa, mozzarella, orégano, calabresa y aceitunas.", pizzaCalabresa),
   pizza2("pz-pepp", "Pepperoni", "Salsa, mozzarella, orégano y pepperoni.", pizzaPepperoni),
   pizza2("pz-napo", "Napolitana+Pepperoni", "Salsa, mozzarella, orégano, jamón, tomate y pepperoni.", pizzaNapolitana),
@@ -82,11 +82,14 @@ export const PRODUCTS: Product[] = [
   pizza2("pz-4q-cala", "Cuatro Queso Calabresa", "Salsa, mozzarella, orégano, calabresa y cuatro quesos.", pizzaCuatroQuesoCalabresa),
   pizza2("pz-4q-pepp", "Cuatro Queso Pepperoni", "Salsa, mozzarella, orégano, pepperoni y cuatro quesos.", pizzaCuatroQuesoPepperoni),
   { id: "pz-lomipizza", name: "Lomipizza", description: "Salsa, mozzarella, lomito, lechuga, tomate, huevo y cebolla.", price: 110000, image: pizzaLomipizzaSpecial, category: "pizzas" },
+  { id: "pz-familia", name: "Pizza Familiar", description: "12 porciones.", price: 85000, image: pizzaLomipizzaSpecial, category: "pizzas", badge: "Nueva" },
 
   // HAMBURGUESAS
-  { id: "hb-guarani", name: "Guaraní Gold Doble", description: "Hamburguesa artesanal con doble carne.", price: 23000, image: burgerGuarani, category: "hamburguesas" },
-  { id: "hb-nanduti", name: "Ñandutí Black Triple", description: "Hamburguesa triple carne premium.", price: 30000, image: burgerNanduti, category: "hamburguesas" },
-  { id: "hb-acaray", name: "Acaray Prime Completa", description: "Hamburguesa completa con todos los ingredientes.", price: 15000, image: burgerAcaray, category: "hamburguesas" },
+  { id: "hb-acaray", name: "Hamburguesa Normal", description: "Hamburguesa clásica.", price: 16000, image: burgerAcaray, category: "hamburguesas" },
+  { id: "hb-guarani", name: "Hamburguesa Doble", description: "Hamburguesa con doble carne.", price: 25000, image: burgerGuarani, category: "hamburguesas" },
+  { id: "hb-nanduti", name: "Burger Triple", description: "Hamburguesa triple carne.", price: 33000, image: burgerNanduti, category: "hamburguesas" },
+  { id: "hb-cheddar", name: "Burger con Cheddar", description: "Hamburguesa con cheddar.", price: 20000, image: burgerAcaray, category: "hamburguesas" },
+  { id: "hb-cheddar-doble", name: "Burger con Cheddar Doble", description: "Hamburguesa doble con cheddar.", price: 30000, image: burgerGuarani, category: "hamburguesas" },
 
   // SÁNDWICHES DE LOMITO
   { id: "lm-simple", name: "Lomito Simple", description: "Jugoso lomito con vegetales frescos y salsa de la casa.", price: 28000, image: sandwichLomito, category: "lomito" },
@@ -110,18 +113,23 @@ export const PRODUCTS: Product[] = [
   { id: "pr-papas-g", name: "Papas Fritas (Grande)", description: "Porción grande para compartir.", price: 20000, image: papas, category: "porciones" },
 
   // BEBIDAS
-  { id: "bb-coca", name: "Coca-Cola 600 ml", description: "Bien fría, para acompañar tu pedido.", price: 12000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-250", name: "Coca-Cola 250 ml", description: "Bien fría, para acompañar tu pedido.", price: 5000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-500", name: "Coca-Cola 500 ml", description: "Bien fría, para acompañar tu pedido.", price: 8000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-lata", name: "Coca-Cola Lata", description: "Bien fría, para acompañar tu pedido.", price: 8000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-600", name: "Coca-Cola 600 ml", description: "Bien fría, para acompañar tu pedido.", price: 12000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-1l", name: "Coca-Cola 1 Litro", description: "Bien fría, para acompañar tu pedido.", price: 10000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-1.5l", name: "Coca-Cola 1,5 Litros", description: "Bien fría, para acompañar tu pedido.", price: 13000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-2l", name: "Coca-Cola 2 Litros", description: "Bien fría, para acompañar tu pedido.", price: 16000, image: bebida, category: "bebidas" },
   { id: "bb-agua", name: "Agua mineral", description: "Botella 500 ml.", price: 7000, image: aguaMineral, category: "bebidas" },
-  { id: "bb-jugo", name: "Jugo del día", description: "Consultá el sabor de hoy.", price: 10000, image: jugo, category: "bebidas" },
 ];
 
 export const UPSELL_MAP: Record<string, string[]> = {
-  pizzas: ["bb-coca", "pr-papas", "pr-papas-g"],
-  hamburguesas: ["pr-papas", "bb-coca", "pr-papas-g"],
-  lomito: ["pr-papas", "bb-coca", "pr-papas-g"],
-  pollo: ["pr-papas", "bb-coca", "pr-papas-g"],
-  arabes: ["pr-papas", "bb-coca"],
-  porciones: ["bb-coca"],
+  pizzas: ["bb-coca-500", "pr-papas", "pr-papas-g"],
+  hamburguesas: ["pr-papas", "bb-coca-500", "pr-papas-g"],
+  lomito: ["pr-papas", "bb-coca-500", "pr-papas-g"],
+  pollo: ["pr-papas", "bb-coca-500", "pr-papas-g"],
+  arabes: ["pr-papas", "bb-coca-500"],
+  porciones: ["bb-coca-500"],
   bebidas: [],
 };
 

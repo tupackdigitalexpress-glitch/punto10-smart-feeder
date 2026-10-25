@@ -503,18 +503,20 @@ function Row({ label, value, big }: { label: string; value: string; big?: boolea
 
 /* ---------------- checkout ---------------- */
 
-type PayMethod = "efectivo" | "tarjeta" | "qr" | "confirmar";
+type PayMethod = "efectivo" | "tarjeta" | "qr" | "confirmar" | "transferencia";
 const PAY_LABELS: Record<PayMethod, string> = {
   efectivo: "Efectivo",
   tarjeta: "Tarjeta",
   qr: "QR",
   confirmar: "A confirmar",
+  transferencia: "Transferencia",
 };
 const PAY_ICONS: Record<PayMethod, string> = {
   efectivo: "💵",
   tarjeta: "💳",
   qr: "📱",
   confirmar: "❓",
+  transferencia: "🏦",
 };
 
 function Checkout({ onClose, onSent }: { onClose: () => void; onSent: () => void }) {
