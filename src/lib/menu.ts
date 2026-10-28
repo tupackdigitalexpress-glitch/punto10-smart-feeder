@@ -2,8 +2,14 @@ import lomito from "@/assets/lomito.jpg";
 import sandwichLomito from "@/assets/sandwich-lomito.jpg";
 import pollo from "@/assets/pollo.jpg";
 import papas from "@/assets/papas.jpg";
-import bebida from "@/assets/bebida.jpg";
 import aguaMineral from "@/assets/agua mineral.jpg";
+import cocaCola250ml from "@/assets/coca-cola-250ml.webp";
+import cocaCola500ml from "@/assets/coca-cola-500ml.webp";
+import cocaCola600ml from "@/assets/coca-cola-600ml.webp";
+import cocaCola1l from "@/assets/coca-cola-1l.webp";
+import cocaCola15l from "@/assets/coca-cola-1-5l.webp";
+import cocaCola2l from "@/assets/coca-cola-2l.webp";
+import cocaColaLata from "@/assets/coca-cola-lata.webp";
 
 // Burger images
 import burgerGuarani from "@/assets/guarani-gold-doble.png";
@@ -22,6 +28,7 @@ import pizzaLomipizza from "@/assets/picaña-portuguesa.png";
 import pizzaCuatroQuesoCalabresa from "@/assets/cuatro queso-calabreza.png";
 import pizzaCuatroQuesoPepperoni from "@/assets/cuatro queso-pepperoni.png";
 import pizzaLomipizzaSpecial from "@/assets/lomipizza.jpg";
+import pizzaFamiliar from "@/assets/pizza-familiar.webp";
 
 export type Category = {
   id: string;
@@ -82,7 +89,7 @@ export const PRODUCTS: Product[] = [
   pizza2("pz-4q-cala", "Cuatro Queso Calabresa", "Salsa, mozzarella, orégano, calabresa y cuatro quesos.", pizzaCuatroQuesoCalabresa),
   pizza2("pz-4q-pepp", "Cuatro Queso Pepperoni", "Salsa, mozzarella, orégano, pepperoni y cuatro quesos.", pizzaCuatroQuesoPepperoni),
   { id: "pz-lomipizza", name: "Lomipizza", description: "Salsa, mozzarella, lomito, lechuga, tomate, huevo y cebolla.", price: 110000, image: pizzaLomipizzaSpecial, category: "pizzas" },
-  { id: "pz-familia", name: "Pizza Familiar", description: "12 porciones.", price: 85000, image: pizzaLomipizzaSpecial, category: "pizzas", badge: "Nueva" },
+  { id: "pz-familia", name: "Pizza Familiar", description: "12 porciones.", price: 85000, image: pizzaFamiliar, category: "pizzas", badge: "Nueva" },
 
   // HAMBURGUESAS
   { id: "hb-acaray", name: "Hamburguesa Normal", description: "Hamburguesa clásica.", price: 16000, image: burgerAcaray, category: "hamburguesas" },
@@ -113,13 +120,13 @@ export const PRODUCTS: Product[] = [
   { id: "pr-papas-g", name: "Papas Fritas (Grande)", description: "Porción grande para compartir.", price: 20000, image: papas, category: "porciones" },
 
   // BEBIDAS
-  { id: "bb-coca-250", name: "Coca-Cola 250 ml", description: "Bien fría, para acompañar tu pedido.", price: 5000, image: bebida, category: "bebidas" },
-  { id: "bb-coca-500", name: "Coca-Cola 500 ml", description: "Bien fría, para acompañar tu pedido.", price: 8000, image: bebida, category: "bebidas" },
-  { id: "bb-coca-lata", name: "Coca-Cola Lata", description: "Bien fría, para acompañar tu pedido.", price: 8000, image: bebida, category: "bebidas" },
-  { id: "bb-coca-600", name: "Coca-Cola 600 ml", description: "Bien fría, para acompañar tu pedido.", price: 12000, image: bebida, category: "bebidas" },
-  { id: "bb-coca-1l", name: "Coca-Cola 1 Litro", description: "Bien fría, para acompañar tu pedido.", price: 10000, image: bebida, category: "bebidas" },
-  { id: "bb-coca-1.5l", name: "Coca-Cola 1,5 Litros", description: "Bien fría, para acompañar tu pedido.", price: 13000, image: bebida, category: "bebidas" },
-  { id: "bb-coca-2l", name: "Coca-Cola 2 Litros", description: "Bien fría, para acompañar tu pedido.", price: 16000, image: bebida, category: "bebidas" },
+  { id: "bb-coca-250", name: "Coca-Cola 250 ml", description: "Bien fría, para acompañar tu pedido.", price: 5000, image: cocaCola250ml, category: "bebidas" },
+  { id: "bb-coca-500", name: "Coca-Cola 500 ml", description: "Bien fría, para acompañar tu pedido.", price: 8000, image: cocaCola500ml, category: "bebidas" },
+  { id: "bb-coca-lata", name: "Coca-Cola Lata", description: "Bien fría, para acompañar tu pedido.", price: 8000, image: cocaColaLata, category: "bebidas" },
+  { id: "bb-coca-600", name: "Coca-Cola 600 ml", description: "Bien fría, para acompañar tu pedido.", price: 12000, image: cocaCola600ml, category: "bebidas" },
+  { id: "bb-coca-1l", name: "Coca-Cola 1 Litro", description: "Bien fría, para acompañar tu pedido.", price: 10000, image: cocaCola1l, category: "bebidas" },
+  { id: "bb-coca-1.5l", name: "Coca-Cola 1,5 Litros", description: "Bien fría, para acompañar tu pedido.", price: 13000, image: cocaCola15l, category: "bebidas" },
+  { id: "bb-coca-2l", name: "Coca-Cola 2 Litros", description: "Bien fría, para acompañar tu pedido.", price: 16000, image: cocaCola2l, category: "bebidas" },
   { id: "bb-agua", name: "Agua mineral", description: "Botella 500 ml.", price: 7000, image: aguaMineral, category: "bebidas" },
 ];
 
